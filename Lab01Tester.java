@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class UGraphTester
+public class Lab01Tester
 {
 	private UGraph ugraph = new UGraph();
 
-	public UGraphTester(){
+	public Lab01Tester(){
 		Scanner scan = new Scanner(System.in);
 		int choice = -1;
 		String value = new String();
@@ -108,6 +108,6 @@ public class UGraphTester
 	}
 
 	public static void main(String[] args){
-		new UGraphTester();
+		new Lab01Tester();
 	}
 }
