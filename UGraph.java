@@ -116,4 +116,31 @@ public class UGraph
 		}
 		return false;
 	}
+
+	private boolean contains(String[] array, String a){
+		for(String k : array){
+			if(k.equals(a)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String[] depthFirst(String first){
+		String[] visited = new String[vertexCount];
+		visited[0] = first;
+		Stack stack = new Stack();
+
+		String current = first;
+
+		do{
+			stack.push(first);
+			String[] adjacents = getAdjacents(current);
+			for(String a : adjacents){
+				 if(!contains(visited, a)){
+				 	stack.push();
+				 }
+			}
+		}while(!stack.isEmpty());
+	}
 }
