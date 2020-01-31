@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class UGraph
 {
 	private int vertexCount;
@@ -119,81 +117,64 @@ public class UGraph
 		return false;
 	}
 
-	private boolean contains(String[] array, String a){
-		if(array != null){
-			for(int i = 0; i < array.length; i++){
-				System.out.println("array" + "[" + i + "]: " + a);
-				if(array[i].equals(a)){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
 	public String[] depthFirst(){
 		LinkList visited = new LinkList();
-		Scanner scan = new Scanner(System.in);
+		Stack stack = new Stack();
 
 		if(vertexSet.length != 0){
 			String first = vertexSet[0].getName();
-			System.out.println("first = " + first);
-			scan.nextLine();
-
+		
 			visited.addLink(first);
-			Stack stack = new Stack();
-			int counter = 0;
-
 			String current = first;
 			stack.push(first);
 
 			do{
 				String[] adjacents = getAdjacents(current);
-				System.out.println("c : " + counter);
-				System.out.println("adjacents = " + adjacents.length);
-				for(String a : adjacents){
-					System.out.println("a: " + a);
-					 if(!visited.findValue(a)){
-					 	System.out.println("b");
-					 	stack.push(a);
-					 	visited.addLink(a);
-					 	current = a;
+				for(int i = 0; i < adjacents.length; i++){
+					 if(!visited.findValue(adjacents[i])){
+					 	stack.push(adjacents[i]);
+					 	visited.addLink(adjacents[i]);
+					 	current = adjacents[i];
 					 	break;
 					 }
-					 counter++;
-					 if(counter == adjacents.length){
-					 	current = stack.pop();
+					 else if(i == adjacents.length-1){
+					 	System.out.println("--");
+					 	if(stack.peek() != null){
+					 		stack.pop();
+					 		current = stack.peek();
+					 	}
 					 	break;
 					 }
 				}
-			}while(!stack.isEmpty());
+			}while(stack.peek() != null);
 		}
 
 		return visited.getList();
 	}
 
 	public String[] breadthFirst(){
-		String[] visited = new String[vertexCount];
-		int i = 0;
+		LinkList visited = new LinkList();
+		Queue queue = new Queue();
 
 		if(vertexSet.length != 0){
-			visited[0] = vertexSet[0].getName();
-			Queue queue = new Queue();
-
-			queue.enqueue(visited[0]);
+			String first = vertexSet[0].getName();
+		
+			visited.addLink(first);
+			String current = first;
+			queue.enqueue(first);
 
 			do{
-				String current = queue.dequeue();
+				current = queue.dequeue();
 				String[] adjacents = getAdjacents(current);
-				for(String a : adjacents){
-					if(!contains(visited, a)){
-						queue.enqueue(a);
-						visited[++i] = a;
+				for(int i = 0; i < adjacents.length; i++){
+					 if(!visited.findValue(adjacents[i])){
+						queue.enqueue(adjacents[i]);
+						visited.addLink(adjacents[i]);
 					}
 				}
 			}while(!queue.isEmpty());
 		}
 
-		return visited;
+		return visited.getList();
 	}
 }

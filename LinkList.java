@@ -41,10 +41,13 @@ public class LinkList
 		}
 	}
 	public String removeTop(){
-		Link temp = first;
-		first = first.getNext();
+		if(first != null){
+			Link temp = first;
+			first = first.getNext();
 
-		return temp.getContent();
+			return temp.getContent();
+		}
+		return null;
 	}
 	public boolean isEmpty(){
 		if(first == null){
