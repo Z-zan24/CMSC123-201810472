@@ -61,7 +61,9 @@ public class UGraphTester
 					System.out.print("(2): ");
 					value2 = scan.nextLine();
 
-					System.out.println("\nAre connected?: " + ugraph.isConnected(value, value2));
+					LinkList removed = new LinkList();
+
+					System.out.println("\nAre connected?: " + ugraph.isConnected(removed , value, value2));
 					break;
 				case 6:
 					System.out.println("Select two vertices");

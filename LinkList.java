@@ -3,6 +3,10 @@ public class LinkList
 	private Link first;
 	private String name;
 
+	public LinkList(){
+		name = null;
+	}
+
 	public LinkList(String name){
 		this.name = name;
 	}

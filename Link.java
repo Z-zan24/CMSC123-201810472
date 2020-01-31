@@ -46,7 +46,7 @@ public class Link
 	}
 
 	public boolean findValue(String value){
-		if(value.equals(content)){
+		if(value.equals(content)){					//Fix Nullpointer Exception
 			return true;
 		}
 		else if(next == null){

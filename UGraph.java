@@ -39,6 +39,8 @@ public class UGraph
 		if(temp.length > 0){
 			for(int i = 0; i < vertexSet.length; i++){
 				if(vertexSet[i].getName().equals(vertex)){
+					String[] list = vertexSet[i].getList();
+					edgeCount = edgeCount - list.length;
 					continue;
 				}
 				vertexSet[i].removeLink(vertex);
@@ -93,7 +95,7 @@ public class UGraph
 		return false;
 	}
 
-	public boolean isConnected(String a, String b){
+	public boolean isConnected(LinkList removed, String a, String b){
 		for(int i = 0; i < vertexSet.length; i++){
 			if(vertexSet[i].getName().equals(a)){
 				if(vertexSet[i].findValue(b)){
@@ -101,28 +103,13 @@ public class UGraph
 				}
 				else{
 					String[] adjacents = vertexSet[i].getList();
+					removed.addLink(vertexSet[i].getName());
 
-					/*if(adjacents != null){
-						String[] temp = new String[adjacents.length-1];
-						int l = 0;
-
-						if(temp.length > 0){
-							for(int k = 0; k < adjacents.length; k++){
-								if(adjacents[k].equals(a)){
-									continue;
-								}
-								temp[l++] = adjacents[k];
-							}
+					for(int j = 0; j < adjacents.length; j++){
+						if(!removed.findValue(adjacents[j]) && isConnected(removed, adjacents[j], b)){
+							return true;
 						}
-
-						adjacents = temp;*/
-
-						for(int j = 0; j < adjacents.length; j++){
-							if(isConnected(adjacents[j], b)){
-								return true;
-							}
-						}
-					//}
+					}
 					return false;
 				}
 			}
