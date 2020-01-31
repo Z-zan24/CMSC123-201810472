@@ -9,6 +9,7 @@ public class UGraphTester
 		int choice = -1;
 		String value = new String();
 		String value2 = new String();
+		String[] contentList = new String[];
 
 		while(choice != 0){
 			System.out.println("\n-----UGraph Tester-----");
@@ -40,7 +41,7 @@ public class UGraphTester
 				case 3:
 					System.out.print("Select a vertex: ");
 					value = scan.nextLine();
-					String[] contentList = ugraph.getAdjacents(value);
+					contentList = ugraph.getAdjacents(value);
 					System.out.print("\n" + value + ":");
 					for(String c : contentList){
 						System.out.print(" |" + c + "|");
@@ -105,7 +106,21 @@ public class UGraphTester
 					System.out.println("\nVertex " + value + " has been removed!");
 					break;
 				case 10:
-					//Enter depth-first
+					System.our.println("Depth-First traversal");
+					contentList = ugraph.depthFirst();
+
+					for(String c : contentList){
+						System.out.print(" |" + c + "|");
+					}
+					break;
+				case 11:
+					System.our.println("Breadth-First traversal");
+					contentList = ugraph.breadthFirst();
+
+					for(String c : contentList){
+						System.out.print(" |" + c + "|");
+					}
+					break;
 			}
 		}
 	}

@@ -40,6 +40,18 @@ public class LinkList
 			}
 		}
 	}
+	public String removeTop(){
+		Link temp = first;
+		first = first.getNext();
+
+		return temp.getContent();
+	}
+	public boolean isEmpty(){
+		if(first == null){
+			return true;
+		}
+		return false;
+	}
 	public String[] getList(){
 		if(first == null){
 			return null;

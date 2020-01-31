@@ -10,9 +10,13 @@ public class Stack
 		return list.removeTop();
 	}
 
-	public String peak(){
+	public String peek(){
 		String temp = pop();
 		push(temp);
 		return temp;
+	}
+
+	public boolean isEmpty(){
+		return list.isEmpty();
 	}
 }

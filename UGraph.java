@@ -126,21 +126,60 @@ public class UGraph
 		return false;
 	}
 
-	public String[] depthFirst(String first){
+	public String[] depthFirst(){
 		String[] visited = new String[vertexCount];
-		visited[0] = first;
-		Stack stack = new Stack();
 
-		String current = first;
+		if(vertexSet.length != 0){
+			visited[0] = vertexSet[0].getName();
+			Stack stack = new Stack();
+			int counter = 0, i = 0;
 
-		do{
-			stack.push(first);
-			String[] adjacents = getAdjacents(current);
-			for(String a : adjacents){
-				 if(!contains(visited, a)){
-				 	stack.push();
-				 }
-			}
-		}while(!stack.isEmpty());
+			String current = visited[0]
+			stack.push(visited[0]);
+
+			do{
+				String[] adjacents = getAdjacents(current);
+				for(String a : adjacents){
+					 if(!contains(visited, a)){
+					 	stack.push(a);
+					 	visited[++i] = a;
+					 	current = a;
+					 	break;
+					 }
+					 counter++;
+					 if(counter == adjacents.length){
+					 	current = stack.pop();
+					 	break;
+					 }
+				}
+			}while(!stack.isEmpty());
+		}
+
+		return visited;
+	}
+
+	public String[] breadthFirst(){
+		String[] visited = new String[vertexCount];
+		int i = 0;
+
+		if(vertexSet.length != 0){
+			visited[0] = vertexSet[0].getName();
+			Queue queue = new Queue();
+
+			queue.enqueue(visited[0]);
+
+			do{
+				String current = queue.dequeue();
+				String[] adjacents = getAdjacents(current);
+				for(String a : adjacents){
+					if(!contains(visited, a)){
+						queue.enqueue(a);
+						visited[++i] = a;
+					}
+				}
+			}while(!queue.isEmpty());
+		}
+
+		return visited;
 	}
 }
