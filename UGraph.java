@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class UGraph
 {
 	private int vertexCount;
@@ -118,31 +120,43 @@ public class UGraph
 	}
 
 	private boolean contains(String[] array, String a){
-		for(String k : array){
-			if(k.equals(a)){
-				return true;
+		if(array != null){
+			for(int i = 0; i < array.length; i++){
+				System.out.println("array" + "[" + i + "]: " + a);
+				if(array[i].equals(a)){
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 
 	public String[] depthFirst(){
-		String[] visited = new String[vertexCount];
+		LinkList visited = new LinkList();
+		Scanner scan = new Scanner(System.in);
 
 		if(vertexSet.length != 0){
-			visited[0] = vertexSet[0].getName();
-			Stack stack = new Stack();
-			int counter = 0, i = 0;
+			String first = vertexSet[0].getName();
+			System.out.println("first = " + first);
+			scan.nextLine();
 
-			String current = visited[0]
-			stack.push(visited[0]);
+			visited.addLink(first);
+			Stack stack = new Stack();
+			int counter = 0;
+
+			String current = first;
+			stack.push(first);
 
 			do{
 				String[] adjacents = getAdjacents(current);
+				System.out.println("c : " + counter);
+				System.out.println("adjacents = " + adjacents.length);
 				for(String a : adjacents){
-					 if(!contains(visited, a)){
+					System.out.println("a: " + a);
+					 if(!visited.findValue(a)){
+					 	System.out.println("b");
 					 	stack.push(a);
-					 	visited[++i] = a;
+					 	visited.addLink(a);
 					 	current = a;
 					 	break;
 					 }
@@ -155,7 +169,7 @@ public class UGraph
 			}while(!stack.isEmpty());
 		}
 
-		return visited;
+		return visited.getList();
 	}
 
 	public String[] breadthFirst(){

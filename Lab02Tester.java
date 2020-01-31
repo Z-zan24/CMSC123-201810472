@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
-public class UGraphTester
+public class Lab02Tester
 {
 	private UGraph ugraph = new UGraph();
 
-	public UGraphTester(){
+	public Lab02Tester(){
 		Scanner scan = new Scanner(System.in);
 		int choice = -1;
 		String value = new String();
 		String value2 = new String();
-		String[] contentList = new String[];
+		String[] contentList;
 
 		while(choice != 0){
 			System.out.println("\n-----UGraph Tester-----");
@@ -24,7 +24,8 @@ public class UGraphTester
 			System.out.println("\t7. Remove edge");
 			System.out.println("\t8. Insert vertex");
 			System.out.println("\t9. Remove vertex");
-			System.out.println("\t10. Depth-First Search");
+			System.out.println("\t10. Depth-First Traversal");
+			System.out.println("\t11. Breadth-First Traversal");
 			System.out.println("\n\t0. EXIT");
 
 			System.out.print("\nEnter your choice: ");
@@ -106,7 +107,7 @@ public class UGraphTester
 					System.out.println("\nVertex " + value + " has been removed!");
 					break;
 				case 10:
-					System.our.println("Depth-First traversal");
+					System.out.println("Depth-First traversal");
 					contentList = ugraph.depthFirst();
 
 					for(String c : contentList){
@@ -114,7 +115,7 @@ public class UGraphTester
 					}
 					break;
 				case 11:
-					System.our.println("Breadth-First traversal");
+					System.out.println("Breadth-First traversal");
 					contentList = ugraph.breadthFirst();
 
 					for(String c : contentList){
@@ -126,6 +127,6 @@ public class UGraphTester
 	}
 
 	public static void main(String[] args){
-		new UGraphTester();
+		new Lab02Tester();
 	}
 }

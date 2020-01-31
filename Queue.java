@@ -1,4 +1,4 @@
-public class QueueWithStack
+public class Queue
 {
 	private Stack stack1 = new Stack();
 	private Stack stack2 = new Stack();
@@ -23,23 +23,4 @@ public class QueueWithStack
 	public boolean isEmpty(){
 		return stack1.isEmpty();
 	}
-
-	/*public String viewTop(){
-		if(stack1.isEmpty()){
-			return null;
-		}
-		else{
-			while(!stack1.isEmpty()){
-				stack2.push(stack1.pop());
-			}
-		
-			String str = stack2.pop();
-
-			stack1.push(str);
-			while(!stack2.isEmpty()){
-				stack1.push(stack2.pop());
-			}
-			return str;
-		}
-	}*/
 }
